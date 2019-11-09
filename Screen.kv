@@ -1,0 +1,57 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<RootScreen>:
+    transition: FadeTransition()
+    StartScreen:
+    MenuScreen:
+
+<StartScreen>:
+    name: "start"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/StartScreen.jpg'
+    Label:
+        text: "Welcome to GrowBox"
+        font_name: "QuickSand"
+        font_size: 55
+        color: 10, 1, 100, 39
+        pos_hint: {'center_x':.5, 'center_y':.8}
+    Button:
+        background_normal: ''
+        background_color: 0, 0, 0, 0
+        text: "Start new growing session"
+        color: 100,50,100,1
+        font_name: "Amble"
+        bold: "true"
+        size_hint: 0.4, 0.1
+        pos_hint: {'center_x':.5, 'center_y':.25}
+        font_size: 35
+        on_release: root.manager.current = "menu"
+
+<MenuScreen>:
+    name: "menu"
+    Label:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'img/MenuScreen.jpeg'
+    FloatLayout:
+        CircularProgressBar:
+            size_hint: (None, None)
+            height: 200
+            width: 200
+            max: 80
+        Button:
+            size_hint: 0.1, 0.1
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            font_size: 30
+            pos_hint: {'center_x':.9, 'center_y':.1}
+            on_release: root.manager.current = "start"
+            Image:
+                source: 'assets/exit.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
