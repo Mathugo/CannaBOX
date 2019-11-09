@@ -7,6 +7,7 @@ from kivy.graphics import Color, Ellipse, Rectangle
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.core.text import Label as CoreLabel
+from kivy.uix.screenmanager import FadeTransition, SwapTransition, WipeTransition
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -32,20 +33,18 @@ def loadFonts():
     )
 
 
-
 class StartScreen(Screen):
     pass
 class MenuScreen(Screen):
     pass
-
-
+"""
 class RootScreen(ScreenManager):
     pass
-
+"""
 class CircularProgressBar(ProgressBar):
     pass
 
-sm = ScreenManager()
+sm = ScreenManager(transition=WipeTransition())
 sm.add_widget(StartScreen(name='start'))
 sm.add_widget(MenuScreen(name='menu'))
 

@@ -1,6 +1,8 @@
-#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+ #:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
 
 <RootScreen>:
+    name: "root"
     transition: FadeTransition()
     StartScreen:
     MenuScreen:
@@ -11,7 +13,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'img/StartScreen.jpg'
+            source: 'img/dark_plant.jpg'
     Label:
         text: "Welcome to GrowBox"
         font_name: "QuickSand"
@@ -30,6 +32,7 @@
         font_size: 35
         on_release: root.manager.current = "menu"
 
+
 <MenuScreen>:
     name: "menu"
     Label:
@@ -37,7 +40,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-                source: 'img/MenuScreen.jpeg'
+                source: 'img/plant.jpg'
     FloatLayout:
         CircularProgressBar:
             size_hint: (None, None)
