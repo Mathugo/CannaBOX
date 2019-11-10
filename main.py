@@ -19,15 +19,10 @@ from circularProgressBar import CircularProgressBar
 Builder.load_file('Screen.kv')
 
 
-
 class StartScreen(Screen):
     pass
 class MenuScreen(Screen):
     pass
-"""
-class RootScreen(ScreenManager):
-    pass
-"""
 class GrowBox(App):
     def animate(self,dt):
         circProgressBarT = self.root.get_screen('menu').ids.cpT

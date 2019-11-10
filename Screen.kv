@@ -2,8 +2,8 @@
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
 #:import Label kivy.core.text.Label
 
-#:set TempLabel Label(text="Temperature\n{}C", font_size=30, color=(1,1,0.5,1), halign="center")
-#:set HygroLabel Label(text="Humidity\n{}%", font_size=30, color=(1,1,0.5,1), halign="center")
+#:set TempLabel Label(text="Temperature\n{}C", font_size=25, color=(1,1,0.5,1), halign="center")
+#:set HygroLabel Label(text="Humidity\n{}%", font_size=25, color=(1,1,0.5,1), halign="center")
 
 <RootScreen>:
     name: "root"
@@ -51,43 +51,49 @@
         font_size: 55
         color: 1, 1, 0, 1
         pos_hint: {'center_x':.5, 'center_y':.8}
-
+    Label:
+        text: "Control panel\n5 days before watering"
+        halign: "center"
+        font_name: "Amble"
+        bold: "true"
+        font_size: 40
+        color: 1,0.8,0,1
+        pos_hint: {'center_x': .5, 'center_y': .5}
     FloatLayout:
         CircularProgressBar:
             id: cpT
             size_hint: (None, None)
-            height: 280
-            width: 280
+            height: 300
+            width: 300
             max: 40
             min: 0
             background_colour: 0.26,0.26,0.26
             #progress_colour: 1, 1, 0
             cap_style: "RouND"
             cap_precision:3
-            thickness: 5
+            thickness: 3
             pos_hint: {'x': .15, 'center_y': .5}
             label: TempLabel
     FloatLayout:
         CircularProgressBar:
             id: cpH
             size_hint: (None, None)
-            height: 280
-            width: 280
+            height: 300
+            width: 300
             max: 100
             min: 0
             background_colour: 0.26,0.26,0.26
             #progress_colour: 1,1,0
             cap_style: "RouND"
             cap_precision:3
-            thickness: 5
+            thickness: 3
             pos_hint: {'center_x': .85, 'center_y': .5}
             label: HygroLabel
     FloatLayout:
         Button:
             size_hint: 0.1, 0.1
             background_normal: ''
-            #background_color: 0, 0, 0, 0
-
+            background_color: 0, 0, 0, 0
             font_size: 30
             pos_hint: {'center_x':.9, 'center_y':.1}
             on_release: root.manager.current = "start"
