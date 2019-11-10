@@ -8,29 +8,16 @@ from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.core.text import Label as CoreLabel
 from kivy.uix.screenmanager import FadeTransition, SwapTransition, WipeTransition
+from collections.abc import Iterable
+
+from fonts import loadFonts
+from circularProgressBar import CircularProgressBarTemp, CircularProgressBarHygro
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_file('Screen.kv')
 
-def loadFonts():
-    LabelBase.register(name="QuickSand",
-        fn_regular="fonts/Quicksand-Regular.otf",
-        fn_bold="fonts/QuickSand-Bold.otf"
-    )
-    LabelBase.register(name="Cantarell",
-        fn_regular="fonts/Cantarell-Regular.ttf",
-        fn_bold="fonts/Cantarell-Bold.ttf"
-    )
-    LabelBase.register(name="OpenSans",
-        fn_regular="fonts/OpenSans-Regular.ttf",
-        fn_bold="fonts/OpenSans-Bold.ttf"
-    )
-    LabelBase.register(name="Amble",
-        fn_regular="fonts/Amble-Regular.ttf",
-        fn_bold="fonts/Amble-Bold.ttf"
-    )
 
 
 class StartScreen(Screen):
@@ -41,24 +28,30 @@ class MenuScreen(Screen):
 class RootScreen(ScreenManager):
     pass
 """
-class CircularProgressBar(ProgressBar):
-    pass
+class GrowBox(App):
+    def animate(self,dt):
+        circProgressBarT = self.root.get_screen('menu').ids.cpT
+        circProgressBarH = self.root.get_screen('menu').ids.cpH
+
+        if circProgressBarT.value<100:
+            circProgressBarT.set_value(circProgressBarT.value+1)
+        else:
+            circProgressBarT.set_value(0)
+
+        if circProgressBarH.value<100:
+            circProgressBarH.set_value(circProgressBarH.value+1)
+        else:
+            circProgressBarH.set_value(0)
+
+    def build(self):
+        Clock.schedule_interval(self.animate, 0.1)
+        return sm
 
 sm = ScreenManager(transition=WipeTransition())
 sm.add_widget(StartScreen(name='start'))
 sm.add_widget(MenuScreen(name='menu'))
 
-class MainApp(App):
-    def build(self):
-        return sm
-
-#    def build(self):
-#        return RootScreen()
-
 if __name__ == '__main__':
-    #sm = ScreenManager()
-    #sm.add_widget(StartScreen(name='start'))
-    #sm.add_widget(MenuScreen(name='menu'))
     loadFonts()
     Window.fullscreen = 'auto'
-    MainApp().run()
+    GrowBox().run()

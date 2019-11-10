@@ -1,5 +1,9 @@
  #:import FadeTransition kivy.uix.screenmanager.FadeTransition
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import Label kivy.core.text.Label
+
+#:set TempLabel Label(text="Temperature\\n{} °C", font_size=30, color=(1,1,0.5,1), halign="center")
+#:set TempLabel Label(text="Humidity\\n{} %", font_size=30, color=(1,1,0.5,1), halign="center")
 
 <RootScreen>:
     name: "root"
@@ -23,7 +27,7 @@
     Button:
         background_normal: ''
         background_color: 0, 0, 0, 0
-        text: "Start new growing session"
+        text: "Start a new growing session"
         color: 100,50,100,1
         font_name: "Amble"
         bold: "true"
@@ -35,18 +39,38 @@
 
 <MenuScreen>:
     name: "menu"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/plant.jpg'
     Label:
-        canvas.before:
-            Rectangle:
-                pos: self.pos
-                size: self.size
-                source: 'img/plant.jpg'
+        text: "Current session : Tomato"
+        font_name: "QuickSand"
+        bold: "true"
+        font_size: 55
+        color: 0, 150, 255, 1
+        pos_hint: {'center_x':.5, 'center_y':.8}
+
     FloatLayout:
-        CircularProgressBar:
+        CircularProgressBarTemp:
+            id: cpT
             size_hint: (None, None)
-            height: 200
-            width: 200
-            max: 80
+            height: 250
+            width: 250
+            max: 100
+            pos_hint: {'x': .2, 'center_y': .5}
+            label: TempLabel
+    FloatLayout:
+        CircularProgressBarHygro:
+            id: cpH
+            size_hint: (None, None)
+            height: 250
+            width: 250
+            max: 100
+            pos_hint: {'center_x': .8, 'center_y': .5}
+            label: HygroLabel
+    FloatLayout:
         Button:
             size_hint: 0.1, 0.1
             background_normal: ''
