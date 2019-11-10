@@ -39,10 +39,11 @@ class GrowBox(App):
             circProgressBarH.value=circProgressBarH.min
 
     def build(self):
+        self.icon = "assets/ico/feuilles.png"
         Clock.schedule_interval(self.animate, 0.1)
         return sm
 
-sm = ScreenManager(transition=WipeTransition())
+sm = ScreenManager(transition=FadeTransition())
 sm.add_widget(StartScreen(name='start'))
 sm.add_widget(MenuScreen(name='menu'))
 

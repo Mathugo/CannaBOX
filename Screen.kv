@@ -2,7 +2,7 @@
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
 #:import Label kivy.core.text.Label
 
-#:set TempLabel Label(text="Temperature\n{}C", font_size=25, color=(1,1,0.5,1), halign="center")
+#:set TempLabel Label(text="Temperature\n{}\u00B0C", font_size=25, color=(1,1,0.5,1), halign="center")
 #:set HygroLabel Label(text="Humidity\n{}%", font_size=25, color=(1,1,0.5,1), halign="center")
 
 <RootScreen>:
@@ -50,7 +50,7 @@
         bold: "true"
         font_size: 55
         color: 1, 1, 0, 1
-        pos_hint: {'center_x':.5, 'center_y':.8}
+        pos_hint: {'center_x':.5, 'center_y':.9}
     Label:
         text: "Control panel\n5 days before watering"
         halign: "center"
@@ -69,7 +69,7 @@
             min: 0
             background_colour: 0.26,0.26,0.26
             #progress_colour: 1, 1, 0
-            cap_style: "RouND"
+            cap_style: "SqUArE"
             cap_precision:3
             thickness: 3
             pos_hint: {'x': .15, 'center_y': .5}
@@ -84,7 +84,7 @@
             min: 0
             background_colour: 0.26,0.26,0.26
             #progress_colour: 1,1,0
-            cap_style: "RouND"
+            cap_style: "SqUArE"
             cap_precision:3
             thickness: 3
             pos_hint: {'center_x': .85, 'center_y': .5}
@@ -95,9 +95,20 @@
             background_normal: ''
             background_color: 0, 0, 0, 0
             font_size: 30
-            pos_hint: {'center_x':.9, 'center_y':.1}
+            pos_hint: {'center_x':.95, 'center_y':.90}
             on_release: root.manager.current = "start"
             Image:
-                source: 'assets/exit.png'
+                source: 'assets/home.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+        Button:
+            size_hint: 0.1, 0.1
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            font_size: 30
+            pos_hint: {'center_x':.95, 'center_y':.95}
+            on_release: root.manager.current = "start"
+            Image:
+                source: 'assets/menu.png'
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
