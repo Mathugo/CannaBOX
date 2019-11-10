@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import FadeTransition, SwapTransition, WipeTransitio
 from collections.abc import Iterable
 
 from fonts import loadFonts
-from circularProgressBar import CircularProgressBarTemp, CircularProgressBarHygro
+from circularProgressBar import CircularProgressBar
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -33,15 +33,15 @@ class GrowBox(App):
         circProgressBarT = self.root.get_screen('menu').ids.cpT
         circProgressBarH = self.root.get_screen('menu').ids.cpH
 
-        if circProgressBarT.value<100:
-            circProgressBarT.set_value(circProgressBarT.value+1)
+        if circProgressBarT.value<circProgressBarT.max:
+            circProgressBarT.value+=1
         else:
-            circProgressBarT.set_value(0)
+            circProgressBarT.value=circProgressBarT.min
 
-        if circProgressBarH.value<100:
-            circProgressBarH.set_value(circProgressBarH.value+1)
+        if circProgressBarH.value<circProgressBarH.max:
+            circProgressBarH.value+=1
         else:
-            circProgressBarH.set_value(0)
+            circProgressBarH.value=circProgressBarH.min
 
     def build(self):
         Clock.schedule_interval(self.animate, 0.1)

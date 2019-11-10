@@ -2,8 +2,8 @@
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
 #:import Label kivy.core.text.Label
 
-#:set TempLabel Label(text="Temperature\\n{} °C", font_size=30, color=(1,1,0.5,1), halign="center")
-#:set TempLabel Label(text="Humidity\\n{} %", font_size=30, color=(1,1,0.5,1), halign="center")
+#:set TempLabel Label(text="Temperature\n{}C", font_size=30, color=(1,1,0.5,1), halign="center")
+#:set HygroLabel Label(text="Humidity\n{}%", font_size=30, color=(1,1,0.5,1), halign="center")
 
 <RootScreen>:
     name: "root"
@@ -26,7 +26,7 @@
         pos_hint: {'center_x':.5, 'center_y':.8}
     Button:
         background_normal: ''
-        background_color: 0, 0, 0, 0
+        background_color: 1, 1, 0.5, 1
         text: "Start a new growing session"
         color: 100,50,100,1
         font_name: "Amble"
@@ -49,32 +49,45 @@
         font_name: "QuickSand"
         bold: "true"
         font_size: 55
-        color: 0, 150, 255, 1
+        color: 1, 1, 0, 1
         pos_hint: {'center_x':.5, 'center_y':.8}
 
     FloatLayout:
-        CircularProgressBarTemp:
+        CircularProgressBar:
             id: cpT
             size_hint: (None, None)
-            height: 250
-            width: 250
-            max: 100
-            pos_hint: {'x': .2, 'center_y': .5}
+            height: 280
+            width: 280
+            max: 40
+            min: 0
+            background_colour: 0.26,0.26,0.26
+            #progress_colour: 1, 1, 0
+            cap_style: "RouND"
+            cap_precision:3
+            thickness: 5
+            pos_hint: {'x': .15, 'center_y': .5}
             label: TempLabel
     FloatLayout:
-        CircularProgressBarHygro:
+        CircularProgressBar:
             id: cpH
             size_hint: (None, None)
-            height: 250
-            width: 250
+            height: 280
+            width: 280
             max: 100
-            pos_hint: {'center_x': .8, 'center_y': .5}
+            min: 0
+            background_colour: 0.26,0.26,0.26
+            #progress_colour: 1,1,0
+            cap_style: "RouND"
+            cap_precision:3
+            thickness: 5
+            pos_hint: {'center_x': .85, 'center_y': .5}
             label: HygroLabel
     FloatLayout:
         Button:
             size_hint: 0.1, 0.1
             background_normal: ''
-            background_color: 0, 0, 0, 0
+            #background_color: 0, 0, 0, 0
+
             font_size: 30
             pos_hint: {'center_x':.9, 'center_y':.1}
             on_release: root.manager.current = "start"
