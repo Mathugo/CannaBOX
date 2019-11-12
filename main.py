@@ -10,15 +10,16 @@ from kivy.core.text import Label as CoreLabel
 from kivy.uix.screenmanager import FadeTransition, SwapTransition, WipeTransition
 from collections.abc import Iterable
 
-from fonts import loadFonts
-from circularProgressBar import CircularProgressBar
+#### Start UP
+Window.size = (1024, 800)
 
-# Create both screens. Please note the root.manager.current: this is how
-# you can control the ScreenManager from kv. Each screen has by default a
-# property manager that gives you the instance of the ScreenManager used.
 Builder.load_file('StartScreen.kv')
 Builder.load_file('MenuScreen.kv')
 
+from fonts import loadFonts
+from circularProgressBar import CircularProgressBar
+
+# DECLARE SCREENS # 
 
 class StartScreen(Screen):
     pass
@@ -50,5 +51,6 @@ sm.add_widget(MenuScreen(name='menu'))
 
 if __name__ == '__main__':
     loadFonts()
-    Window.fullscreen = 'auto'
+#    Window.fullscreen = 'auto'
+    #C
     GrowBox().run()

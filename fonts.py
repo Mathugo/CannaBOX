@@ -3,7 +3,7 @@ from kivy.core.text import LabelBase
 def loadFonts():
     LabelBase.register(name="QuickSand",
         fn_regular="fonts/Quicksand-Regular.otf",
-        fn_bold="fonts/QuickSand-Bold.otf"
+    #    fn_bold="fonts/QuickSand-Bold.otf"
     )
     LabelBase.register(name="Cantarell",
         fn_regular="fonts/Cantarell-Regular.ttf",
