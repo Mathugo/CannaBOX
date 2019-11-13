@@ -326,7 +326,7 @@ class CircularProgressBar(Widget):
                 GREEN=1
                 BLUE=0.32
                 pourcentage=(self.value_normalized-blue_max)/(green_max-green_min)
-                BLUE=1-self.value_normalized*1.5
+                BLUE=1-self.value_normalized*1.7
                 PROGRESS=(RED,GREEN,BLUE,OPACITY)
                 self.progress_colour=PROGRESS
 
@@ -336,7 +336,7 @@ class CircularProgressBar(Widget):
                 GREEN=1
                 BLUE=0.32
                 pourcentage=(self.value_normalized-green_max)/(yellow_max-yellow_min)
-                RED=pourcentage
+                RED=pourcentage+0.2
                 PROGRESS=(RED,GREEN,BLUE,OPACITY)
                 self.progress_colour=PROGRESS
 
@@ -346,9 +346,13 @@ class CircularProgressBar(Widget):
                 GREEN=1
                 BLUE=0.32
                 pourcentage=(self.value_normalized-yellow_max)/(red_max-red_min)
-                GREEN=1-self.value_normalized*2
+                GREEN=1-(self.value_normalized-yellow_max)*3.3
+                print("GREEN else : "+str(GREEN))
+                print("red else : "+str(RED))
+                print
                 PROGRESS=(RED,GREEN,BLUE,OPACITY)
-            #    self.progress_colour=(1,0,0,1)
+                self.progress_colour=PROGRESS
+            #   self.progress_colour=(1,0,0,1)
 
             Color(*self.progress_colour)
             Line(circle=(self.pos[0] + self._widget_size / 2, self.pos[1] + self._widget_size / 2,
