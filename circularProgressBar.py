@@ -22,10 +22,11 @@ _DEFAULT_MIN_PROGRESS = 0
 _DEFAULT_WIDGET_SIZE = 200
 _DEFAULT_TEXT_LABEL = Label(text="{}%", font_size=40)
 
-YELLOW=(1,1,0,1)
-RED=(1,0,0,1)
-GREEN=(0,1,0,1)
-BLUE=(0,0,1,1)
+OPACITY=1
+
+
+
+
 # Declare the defaults for the normalisation function, these are used in the textual representation (multiplied by 100)
 _NORMALISED_MAX = 1
 _NORMALISED_MIN = 0
@@ -277,21 +278,77 @@ class CircularProgressBar(Widget):
         with self.canvas:
             self.canvas.clear()
             self._refresh_text()
+                # 0.32 --> 63/191 neutral value
+                # Green final --> (0.32, 1, 0.32)
+                # BLue final --> (0.32, 0.32 , 1)
+                # Red final --> (1, 0.32, 0.32)
+            blue_min=0
+            blue_max=0.3
+            green_min=0.3
+            green_max=0.6
+            yellow_min=0.6
+            yellow_max=0.8
+            red_min=0.8
+            red_max=1
+
+
+            coeff=1.9
+        #    YELLOW=(1,1,0,OPACITY)
+        #    RED=(1,0,0,OPACITY)
+        #    GREEN=(0,1,0,OPACITY)
+        #    BLUE=(0,0,1,OPACITY)
 
             # Draw the background progress line
             Color(*self.background_colour)
             Line(circle=(self.pos[0] + self._widget_size / 2, self.pos[1] + self._widget_size / 2,
                          self._widget_size / 2 - self._thickness), width=self._thickness)
 
+
             # Draw the progress line
-            if self.value_normalized <= 0.3 and self.value_normalized >= 0:
-                self.progress_colour=BLUE
-            elif self.value_normalized > 0.3 and self.value_normalized <= 0.6:
-                self.progress_colour=GREEN
-            elif self.value_normalized > 0.6 and self.value_normalized <= 0.8:
-                self.progress_colour=YELLOW
+
+            if self.value_normalized <= blue_max and self.value_normalized >= blue_min:
+                RED=0.32
+                GREEN=0.32
+                BLUE=1
+                pourcentage=self.value_normalized/(blue_max-blue_min)
+
+                BLUE=1-self.value_normalized*1.7
+                GREEN=pourcentage
+
+                print("Blue :"+str(BLUE))
+                print("GREEN : "+str(GREEN))
+                PROGRESS=(RED,GREEN,BLUE,OPACITY)
+                self.progress_colour=PROGRESS
+
+
+            elif self.value_normalized > green_min and self.value_normalized <= green_max:
+                RED=0.32
+                GREEN=1
+                BLUE=0.32
+                pourcentage=(self.value_normalized-blue_max)/(green_max-green_min)
+                BLUE=1-self.value_normalized*1.5
+                PROGRESS=(RED,GREEN,BLUE,OPACITY)
+                self.progress_colour=PROGRESS
+
+        #        self.progress_colour=(0,1,0,1)
+            elif self.value_normalized > yellow_min and self.value_normalized <= yellow_max:
+                RED=0.32
+                GREEN=1
+                BLUE=0.32
+                pourcentage=(self.value_normalized-green_max)/(yellow_max-yellow_min)
+                RED=pourcentage
+                PROGRESS=(RED,GREEN,BLUE,OPACITY)
+                self.progress_colour=PROGRESS
+
+#                self.progress_colour=(1,1,0,1)
             else:
-                self.progress_colour=RED
+                RED=1
+                GREEN=1
+                BLUE=0.32
+                pourcentage=(self.value_normalized-yellow_max)/(red_max-red_min)
+                GREEN=1-self.value_normalized*2
+                PROGRESS=(RED,GREEN,BLUE,OPACITY)
+            #    self.progress_colour=(1,0,0,1)
 
             Color(*self.progress_colour)
             Line(circle=(self.pos[0] + self._widget_size / 2, self.pos[1] + self._widget_size / 2,
@@ -302,3 +359,8 @@ class CircularProgressBar(Widget):
             Rectangle(texture=self._text_label.texture, size=self._label_size,
                       pos=(self._widget_size / 2 - self._label_size[0] / 2 + self.pos[0],
                            self._widget_size / 2 - self._label_size[1] / 2 + self.pos[1]))
+
+            if (self.value_normalized==1):
+                RED=0
+                GREEN=0
+                BLUE=1

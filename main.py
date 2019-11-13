@@ -11,12 +11,12 @@ from kivy.uix.screenmanager import FadeTransition, SwapTransition, WipeTransitio
 from collections.abc import Iterable
 
 #### Start UP
-Window.size = (1024, 800)
+Window.size = (1024, 600)
+from fonts import loadFonts
 
 Builder.load_file('StartScreen.kv')
 Builder.load_file('MenuScreen.kv')
 
-from fonts import loadFonts
 from circularProgressBar import CircularProgressBar
 
 # DECLARE SCREENS # 
