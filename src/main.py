@@ -18,17 +18,18 @@ from kivy.uix.widget import Widget
 Window.size = (1024, 600)
 from fonts import loadFonts
 from circularProgressBar import CircularProgressBar
+from Screens import *
 
-Builder.load_file('Screens/*.kv')
 sm = ScreenManager(transition=FadeTransition())
+load_screens_files()
 
 # DECLARE SCREENS # 
 
 
 class GrowBox(App):
     def animate(self,dt):
-        circProgressBarT = self.root.get_screen('menu').ids.cpT
-        circProgressBarH = self.root.get_screen('menu').ids.cpH
+        circProgressBarT = self.root.get_screen('home').ids.cpT
+        circProgressBarH = self.root.get_screen('home').ids.cpH
 
         if circProgressBarT.value<circProgressBarT.max:
             circProgressBarT.value+=1
@@ -44,12 +45,13 @@ class GrowBox(App):
         Clock.schedule_interval(self.animate, 0.1)
         return sm
 
+
 def loadScreens():
 
     global sm
     sm.add_widget(StartScreen(name='start'))
-    sm.add_widget(MenuScreen(name='menu'))
-    sm.add_widget(MenuScreenDash(name='menudash'))
+    sm.add_widget(HomeScreen(name='home'))
+    sm.add_widget(HomeScreenDash(name='homedash'))
     sm.add_widget(GraphScreen(name='graph'))
     sm.add_widget(GraphScreenDash(name='graphdash'))
     sm.add_widget(ScheduleScreen(name='schedule'))

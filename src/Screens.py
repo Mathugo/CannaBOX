@@ -1,9 +1,12 @@
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
+
 class StartScreen(Screen):
     pass
 
-class MenuScreen(Screen):
+class HomeScreen(Screen):
     pass
-class MenuScreenDash(Screen):
+class HomeScreenDash(Screen):
     pass
 
 class GraphScreen(Screen):
@@ -24,4 +27,17 @@ class TimelapseScreenDash(Screen):
 class SettingsScreen(Screen):
     pass
 class SettingsScreenDash(Screen):
-    pass                                 
+    pass
+
+def load_screens_files():
+    Builder.load_file('Screens/StartScreen.kv')
+    Builder.load_file('Screens/HomeScreen.kv')
+    Builder.load_file('Screens/HomeScreenDash.kv')
+    Builder.load_file('Screens/GraphScreen.kv')
+    Builder.load_file('Screens/GraphScreenDash.kv')
+    Builder.load_file('Screens/ScheduleScreen.kv')
+    Builder.load_file('Screens/ScheduleScreenDash.kv')
+    Builder.load_file('Screens/TimelapseScreen.kv')
+    Builder.load_file('Screens/TimelapseScreenDash.kv')
+    Builder.load_file('Screens/SettingsScreen.kv')
+    Builder.load_file('Screens/SettingsScreenDash.kv')

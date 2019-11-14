@@ -7,7 +7,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'img/dark_plant.jpg'
+            source: '../img/dark_plant.jpg'
     Label:
         text: "Welcome to GrowBox"
         font_name: "QuickSand"
@@ -29,4 +29,4 @@
         on_press: self.text= "Starting !"
         on_release:
             root.manager.transition.direction = "left"
-            root.manager.current = "menu"
+            root.manager.current = "home"
