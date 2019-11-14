@@ -19,6 +19,7 @@
         font_size: 30
         color: 1,0.8,0,1
         pos_hint: {'center_x': .65, 'center_y': .5}
+
     FloatLayout:
         CircularProgressBar:
             id: cpT
@@ -47,3 +48,30 @@
             thickness: 10
             pos_hint: {'center_x': .85, 'center_y': .5}
             label: HygroLabel
+
+    FloatLayout:
+        Button: # GRAPH
+            background_normal: ''
+            background_color: 1, 1, 0.5, 1
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .75}
+            on_release:root.manager.current = "graph"
+        Button: # Schedule
+            background_normal: ''
+            background_color: 1, 1, 0.5, 1
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .58}
+            on_release:root.manager.current = "schedule"
+
+        Button: # Timelapse
+            background_normal: ''
+            background_color: 1, 1, 0.5, 1
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .42}
+            on_release:root.manager.current = "timelapse"
+        Button: # Setting
+            background_normal: ''
+            background_color: 1, 1, 0.5, 1
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .25}
+            on_release:root.manager.current = "settings"
