@@ -12,23 +12,34 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: '..img/background.png'
+            source: '../img/background.png'
     Label:
         text: "Tomato session"
         font_name: "Roboto"
         bold: "true"
         font_size: 55
         color: 1, 1, 0, 1
-        pos_hint: {'center_x':.6, 'center_y':.9}
+        pos_hint: {'center_x':.5, 'center_y':.9}
     Label:
         text: "Day 1"
         halign: "center"
         font_name: "Roboto"
         font_size: 30
         color: 1,0.8,0,1
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': .5, 'center_y': .5}
 
     FloatLayout:
+        Button:
+            text: "Dash"
+            font_name: "Roboto"
+            font_size: 20
+            pos_hint: {'center_x': .1, 'center_y': .9}
+            size_hint: 0.2, 0.2
+            on_release:
+                root.manager.current = "homedash"
+
+            #    root.manager.transition.direction = "left"
+            #    root.manager.transition.duration = 1
         CircularProgressBar:
             id: cpT
             size_hint: (None, None)
@@ -40,7 +51,7 @@
             #progress_colour: 1, 1, 0
             #cap_precision:3
             thickness: 10
-            pos_hint: {'x': .3, 'center_y': .5}
+            pos_hint: {'x': .2, 'center_y': .5}
             label: TempLabel
     FloatLayout:
         CircularProgressBar:
@@ -54,5 +65,5 @@
             #progress_colour: 1,1,0
             #cap_precision:3
             thickness: 10
-            pos_hint: {'center_x': .85, 'center_y': .5}
+            pos_hint: {'center_x': .75, 'center_y': .5}
             label: HygroLabel

@@ -27,6 +27,4 @@
         pos_hint: {'center_x':.5, 'center_y':.25}
         font_size: 35
         on_press: self.text= "Starting !"
-        on_release:
-            root.manager.transition.direction = "left"
-            root.manager.current = "home"
+        on_release:root.manager.current = "home"

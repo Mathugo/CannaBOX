@@ -31,6 +31,9 @@ class GrowBox(App):
         circProgressBarT = self.root.get_screen('home').ids.cpT
         circProgressBarH = self.root.get_screen('home').ids.cpH
 
+        circProgressBarTd = self.root.get_screen('homedash').ids.cpT
+        circProgressBarHd = self.root.get_screen('homedash').ids.cpH
+
         if circProgressBarT.value<circProgressBarT.max:
             circProgressBarT.value+=1
         else:
@@ -40,6 +43,16 @@ class GrowBox(App):
             circProgressBarH.value+=1
         else:
             circProgressBarH.value=circProgressBarH.min
+
+        if circProgressBarTd.value<circProgressBarTd.max:
+            circProgressBarTd.value+=1
+        else:
+            circProgressBarTd.value=circProgressBarTd.min
+
+        if circProgressBarHd.value<circProgressBarHd.max:
+            circProgressBarHd.value+=1
+        else:
+            circProgressBarHd.value=circProgressBarHd.min
 
     def build(self):
         Clock.schedule_interval(self.animate, 0.1)

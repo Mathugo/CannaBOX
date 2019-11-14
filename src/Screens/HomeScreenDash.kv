@@ -4,4 +4,46 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: '../assets/background_menu_dash.png'
+            source: '../assets/Home/background_home_dash.png'
+    Label:
+        text: "Tomato session"
+        font_name: "Roboto"
+        bold: "true"
+        font_size: 55
+        color: 1, 1, 0, 1
+        pos_hint: {'center_x':.6, 'center_y':.9}
+    Label:
+        text: "Day 1"
+        halign: "center"
+        font_name: "Roboto"
+        font_size: 30
+        color: 1,0.8,0,1
+        pos_hint: {'center_x': .65, 'center_y': .5}
+    FloatLayout:
+        CircularProgressBar:
+            id: cpT
+            size_hint: (None, None)
+            height: 250
+            width: 250
+            max: 40
+            min: 0
+            background_colour: 0.26,0.26,0.26
+            #progress_colour: 1, 1, 0
+            #cap_precision:3
+            thickness: 10
+            pos_hint: {'x': .35, 'center_y': .5}
+            label: TempLabel
+    FloatLayout:
+        CircularProgressBar:
+            id: cpH
+            size_hint: (None, None)
+            height: 250
+            width: 250
+            max: 100
+            min: 0
+            background_colour: 0.26,0.26,0.26
+            #progress_colour: 1,1,0
+            #cap_precision:3
+            thickness: 10
+            pos_hint: {'center_x': .85, 'center_y': .5}
+            label: HygroLabel
