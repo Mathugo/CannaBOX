@@ -14,7 +14,7 @@
             size: self.size
             source: '../img/background.png'
     Label:
-        text: "Tomato session"
+        text: "Nique ta mere"
         font_name: "Roboto"
         bold: "true"
         font_size: 55
@@ -30,13 +30,17 @@
 
     FloatLayout:
         Button:
-            text: "Dash"
-            font_name: "Roboto"
-            font_size: 20
-            pos_hint: {'center_x': .1, 'center_y': .9}
-            size_hint: 0.2, 0.2
+            background_normal: ''
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': .05, 'center_y': .9}
+            size_hint: 0.13, 0.2
             on_release:
                 root.manager.current = "homedash"
+            Image:
+                source: '../assets/ico/menu.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
 
             #    root.manager.transition.direction = "left"
             #    root.manager.transition.duration = 1
