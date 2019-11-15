@@ -5,6 +5,16 @@
 #:set TempLabel Label(text="Temperature\n{}\u00B0C", font_size=25, color=(1,1,0.5,1), halign="center")
 #:set HygroLabel Label(text="Humidity\n{}%", font_size=25, color=(1,1,0.5,1), halign="center")
 
+<DashBoard>:
+    size_hint: None, None
+    Image:
+        source: '../assets/Graph/dash_graph.png'
+        size_hint: None, None
+        size: (300, 600)
+            #    size: self.parent.size # So we don't have to change it every time, change the size above only
+        pos_hint: {'center_x': -1.5, 'center_y': 3}
+
+
 
 <HomeScreen>:
     name: "home"
@@ -35,12 +45,12 @@
             pos_hint: {'center_x': .05, 'center_y': .9}
             size_hint: 0.13, 0.2
             on_release:
-                root.manager.current = "homedash"
+                root.dash()
+                #root.manager.current = "homedash"
             Image:
                 source: '../assets/ico/menu.png'
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-
 
             #    root.manager.transition.direction = "left"
             #    root.manager.transition.duration = 1

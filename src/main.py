@@ -28,6 +28,14 @@ load_screens_files()
 
 class GrowBox(App):
     def animate(self,dt):
+
+        #anim = Animation(opacity=0,duration=1)
+        #tx = self.root.get_screen('loading').ids.lb
+        #anim.start(tx)
+        #tx = self.root.get_screen('loading').ids.things
+        #anim.start(tx)
+        #anim = Animation(pos=(100,100), t='out_bounce')
+
         circProgressBarT = self.root.get_screen('home').ids.cpT
         circProgressBarH = self.root.get_screen('home').ids.cpH
 
@@ -62,8 +70,11 @@ class GrowBox(App):
 def loadScreens():
 
     global sm
-    sm.add_widget(StartScreen(name='start'))
-    sm.add_widget(HomeScreen(name='home'))
+#    sm.add_widget(LoadingScreen(name='loading'))
+    #sm.add_widget(StartScreen(name='start'))
+    home = HomeScreen(name='home')
+    #home.add_widget(DashBoard())
+    sm.add_widget(home)
     sm.add_widget(HomeScreenDash(name='homedash'))
     sm.add_widget(GraphScreen(name='graph'))
     sm.add_widget(GraphScreenDash(name='graphdash'))
