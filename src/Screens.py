@@ -10,6 +10,8 @@ class LoadingScreen(Screen):
     pass
 
 class HomeScreen(Screen):
+    def __init__(self, **kwargs):
+        super(HomeScreen,self).__init__(**kwargs)
     def dash(self):
         self.add_widget(DashBoard())
 class HomeScreenDash(Screen):
@@ -18,13 +20,7 @@ class HomeScreenDash(Screen):
 class DashBoard(FloatLayout):
     def __init__(self, **kwargs):
         super(DashBoard, self).__init__(**kwargs)
-    #    animation = Animation(pos=(0, 0), t='out_bounce')
-    #    animation += Animation(pos=(200, 100), t='out_bounce')
-    #    animation = Animation(size=(300, 600), duration = 1.)
-    #    animation = Animation(x=300, t='in_quad', duration=1.5)
-        #animation = Animation(pos=(0,0))
-        #animation &= Animation(size=(500, 500))
-        #animation += Animation(size=(100, 50))
+    #    self.manager = sm
         animation = Animation(x=0)
         animation = Animation(x=300, t='in_out_back')
         animation.start(self)

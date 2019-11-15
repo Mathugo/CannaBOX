@@ -63,6 +63,7 @@ class GrowBox(App):
             circProgressBarHd.value=circProgressBarHd.min
 
     def build(self):
+        self.sm=sm
         Clock.schedule_interval(self.animate, 0.1)
         return sm
 
