@@ -27,11 +27,8 @@ load_screens_files()
 
 
 class GrowBox(App):
-    def animate(self,dt):
+    def animate_circle(self,dt):
 
-        #anim = Animation(opacity=0,duration=1)
-        #tx = self.root.get_screen('loading').ids.lb
-        #anim.start(tx)
         #tx = self.root.get_screen('loading').ids.things
         #anim.start(tx)
         #anim = Animation(pos=(100,100), t='out_bounce')
@@ -39,8 +36,6 @@ class GrowBox(App):
         circProgressBarT = self.root.get_screen('home').ids.cpT
         circProgressBarH = self.root.get_screen('home').ids.cpH
 
-        circProgressBarTd = self.root.get_screen('homedash').ids.cpT
-        circProgressBarHd = self.root.get_screen('homedash').ids.cpH
 
         if circProgressBarT.value<circProgressBarT.max:
             circProgressBarT.value+=1
@@ -52,29 +47,18 @@ class GrowBox(App):
         else:
             circProgressBarH.value=circProgressBarH.min
 
-        if circProgressBarTd.value<circProgressBarTd.max:
-            circProgressBarTd.value+=1
-        else:
-            circProgressBarTd.value=circProgressBarTd.min
-
-        if circProgressBarHd.value<circProgressBarHd.max:
-            circProgressBarHd.value+=1
-        else:
-            circProgressBarHd.value=circProgressBarHd.min
-
     def build(self):
         self.sm=sm
-        Clock.schedule_interval(self.animate, 0.1)
+        Clock.schedule_interval(self.animate_circle, 0.1)
         return sm
 
 
 def loadScreens():
 
     global sm
-#    sm.add_widget(LoadingScreen(name='loading'))
+    sm.add_widget(LoadingScreen(name='loading'))
     #sm.add_widget(StartScreen(name='start'))
     home = HomeScreen(name='home')
-    #home.add_widget(DashBoard())
     sm.add_widget(home)
     sm.add_widget(HomeScreenDash(name='homedash'))
     sm.add_widget(GraphScreen(name='graph'))
