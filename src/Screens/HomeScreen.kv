@@ -13,31 +13,32 @@
         size: (300, 600)
             #    size: self.parent.size # So we don't have to change it every time, change the size above only
         pos_hint: {'center_x': -1.5, 'center_y': 3}
-    Button: # GRAPH
-        background_normal: ''
-        background_color: 1, 1, 1, 1
-        size_hint: 0.55, 0.15
-        pos_hint: {'center_x': .01, 'center_y': .75}
-        on_release:app.sm.current = "graph"
-    Button: # Schedule
-        background_normal: ''
-        background_color: 0, 0, 0, 0
-        size_hint: 0.55, 0.15
-        pos_hint: {'center_x': .01, 'center_y': .58}
-        on_release:app.sm.current = "schedule"
+    FloatLayout:
+        Button: # GRAPH
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .75}
+            on_release:app.sm.current = "graph"
+        Button: # Schedule
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .58}
+            on_release:app.sm.current = "schedule"
 
-    Button: # Timelapse
-        background_normal: ''
-        background_color: 0, 0, 0, 0
-        size_hint: 0.55, 0.15
-        pos_hint: {'center_x': .01, 'center_y': .42}
-        on_release:app.sm.current = "timelapse"
-    Button: # Setting
-        background_normal: ''
-        background_color: 0, 0, 0, 0
-        size_hint: 0.55, 0.15
-        pos_hint: {'center_x': .01, 'center_y': .25}
-        on_release:app.sm.current = "settings"
+        Button: # Timelapse
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .42}
+            on_release:app.sm.current = "timelapse"
+        Button: # Setting
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': .01, 'center_y': .25}
+            on_release:app.sm.current = "settings"
 
 
 
@@ -71,7 +72,7 @@
             pos_hint: {'center_x': .05, 'center_y': .9}
             size_hint: 0.13, 0.2
             on_release:
-                root.dash()
+                root.add_dash()
                 #root.manager.current = "homedash"
             Image:
                 source: '../assets/ico/menu.png'
