@@ -27,25 +27,42 @@ class StartScreen(Screen):
 
 
 class HomeScreen(Screen):
+    def __init__(self,**kwargs):
+        super(HomeScreen, self).__init__(**kwargs)
+        self.anim_duration=1
     def add_dash(self):
         self.dash_widget=DashBoard()
         self.add_widget(self.dash_widget)
-        #Clock.schedule_once(self.add_button, 1)
+        Clock.schedule_once(self.add_button, self.anim_duration)
+    def remove_dash(self,dt):
+        self.dash_widget.remove()
+        Clock.schedule_once(self.remove_dash_clock,self.anim_duration)
+    def remove_dash_clock(self,dt):
+        self.remove_widget(self.dash_widget)
+        self.remove_widget(self.btn1)
+
     def add_button(self,dt):
-        btn1 = Button(text="Hello",
-                    background_color =(1, 1, 1, 1),
+        btn1 = Button(
+                    background_color =(0, 0, 0, 0),
                     color =(1, 1, 1, 1),
                     size =(32, 32),
-                    size_hint =(.2, .2),
-                    pos =(300, 250))
-        #btn1.bind(on_press = callback)
+                    size_hint =(.08, .12),
+                    pos =(0, 530))
+        btn1.bind(on_press = self.remove_dash)
+        self.btn1=btn1
         self.add_widget(btn1)
 
 class DashBoard(FloatLayout):
-    def __init__(self, **kwargs):
-        super(DashBoard, self).__init__(**kwargs)
+    def __init__(self,**kwargs):
+        super(DashBoard,self).__init__(**kwargs)
+        self.anim_duration=1
         animation = Animation(x=0)
-        animation = Animation(x=300, t='in_out_back')
+        animation = Animation(x=300, t='in_out_back',duration=self.anim_duration)
+        animation.start(self)
+
+    def remove(self):
+        animation = Animation(x=300)
+        animation = Animation(x=0, t='in_out_back',duration=self.anim_duration)
         animation.start(self)
 
 class GraphScreen(Screen):

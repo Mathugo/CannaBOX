@@ -65,7 +65,7 @@
         color: 1,0.8,0,1
         pos_hint: {'center_x': .5, 'center_y': .5}
 
-    FloatLayout:
+    FloatLayout: ## DASH
         Button:
             background_normal: ''
             background_color: 0,0,0,0
@@ -73,14 +73,11 @@
             size_hint: 0.13, 0.2
             on_release:
                 root.add_dash()
-                #root.manager.current = "homedash"
             Image:
                 source: '../assets/ico/menu.png'
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
 
-            #    root.manager.transition.direction = "left"
-            #    root.manager.transition.duration = 1
         CircularProgressBar:
             id: cpT
             size_hint: (None, None)
