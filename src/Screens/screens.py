@@ -30,7 +30,7 @@ class DashScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.anim_duration=1
-        
+
     def add_dash(self):
         self.dash_widget=DashBoard()
         self.add_widget(self.dash_widget)
@@ -52,11 +52,6 @@ class DashScreen(Screen):
         self.btn1=btn1
         self.add_widget(btn1)
 
-class HomeScreen(DashScreen):
-    def __init__(self,**kwargs):
-        super().__init__(**kwargs)
-
-
 class DashBoard(FloatLayout):
     def __init__(self,**kwargs):
         super(DashBoard,self).__init__(**kwargs)
@@ -70,19 +65,23 @@ class DashBoard(FloatLayout):
         animation = Animation(x=0, t='in_out_back',duration=self.anim_duration)
         animation.start(self)
 
-class GraphScreen(Screen):
+class HomeScreen(DashScreen):
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+
+class GraphScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-class ScheduleScreen(Screen):
+class ScheduleScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-class TimelapseScreen(Screen):
+class TimelapseScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-class SettingsScreen(Screen):
+class SettingsScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

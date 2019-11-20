@@ -13,32 +13,42 @@
             size_hint: 3, 0.9
             size : 32, 32
             pos : 0, 430
-            on_release:app.sm.current = "home"
+            on_release:
+                app.home.remove_dash(0)
+                app.sm.current = "home"
         Button: # Schedule
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size : 32,32
             pos: 0, 330
-            on_release:app.sm.current = "graph"
+            on_release:
+                app.graph.remove_dash(0)
+                app.sm.current = "graph"
         Button: # Timelapse
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size : 32,32
             pos: 0,230
-            on_release:app.sm.current = "schedule"
+            on_release:
+                app.schedule.remove_dash(0)
+                app.sm.current = "schedule"
         Button: # Setting
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size: 32,32
             pos: 0, 130
-            on_release:app.sm.current = "timelapse"
+            on_release:
+                app.timelapse.remove_dash(0)
+                app.sm.current = "timelapse"
         Button:
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size: 32,32
             pos: 0, 30
-            on_release:app.sm.current = "settings"
+            on_release:
+                app.settings.remove_dash(0)
+                app.sm.current = "settings"

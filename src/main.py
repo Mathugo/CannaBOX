@@ -27,6 +27,7 @@ load_screens_files()
 
 
 class GrowBox(App):
+
     def animate_circle(self,dt):
 
         circProgressBarT = self.root.get_screen('home').ids.cpT
@@ -45,22 +46,28 @@ class GrowBox(App):
 
     def build(self):
         self.sm=sm
+        self.loadScreens()
         Clock.schedule_interval(self.animate_circle, 0.1)
         return sm
 
+    def loadScreens(self):
 
-def loadScreens():
+        global sm
+        #sm.add_widget(StartScreen(name='start'))
+        self.home=HomeScreen(name='home')
+        self.graph=GraphScreen(name='graph')
+        self.schedule=ScheduleScreen(name='schedue')
+        self.timelapse=TimelapseScreen(name='timelapse')
+        self.settings=SettingsScreen(name='settings')
 
-    global sm
-    #sm.add_widget(StartScreen(name='start'))
-    sm.add_widget(HomeScreen(name='home'))
-    sm.add_widget(GraphScreen(name='graph'))
-    sm.add_widget(ScheduleScreen(name='schedule'))
-    sm.add_widget(TimelapseScreen(name='timelapse'))
-    sm.add_widget(SettingsScreen(name='settings'))
+        sm.add_widget(self.home)
+        sm.add_widget(self.graph)
+        sm.add_widget(self.schedule)
+        sm.add_widget(self.timelapse)
+        sm.add_widget(self.settings)
 
 
 if __name__ == '__main__':
     loadFonts()
-    loadScreens()
+
     GrowBox().run()
