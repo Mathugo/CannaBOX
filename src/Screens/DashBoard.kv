@@ -9,27 +9,36 @@
     FloatLayout:
         Button: # GRAPH
             background_normal: ''
-            background_color: 1, 1, 1, 1
-            size_hint: 1, 1
+            background_color: 1, 1, 1, 0
+            size_hint: 3, 0.9
             size : 32, 32
-            pos : 0, 400
-            on_release:app.sm.current = "graph"
+            pos : 0, 430
+            on_release:app.sm.current = "home"
         Button: # Schedule
             background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .58}
-            on_release:app.sm.current = "schedule"
-
+            background_color: 1, 1, 1, 0
+            size_hint: 3, 0.9
+            size : 32,32
+            pos: 0, 330
+            on_release:app.sm.current = "graph"
         Button: # Timelapse
             background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .42}
-            on_release:app.sm.current = "timelapse"
+            background_color: 1, 1, 1, 0
+            size_hint: 3, 0.9
+            size : 32,32
+            pos: 0,230
+            on_release:app.sm.current = "schedule"
         Button: # Setting
             background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .25}
+            background_color: 1, 1, 1, 0
+            size_hint: 3, 0.9
+            size: 32,32
+            pos: 0, 130
+            on_release:app.sm.current = "timelapse"
+        Button:
+            background_normal: ''
+            background_color: 1, 1, 1, 0
+            size_hint: 3, 0.9
+            size: 32,32
+            pos: 0, 30
             on_release:app.sm.current = "settings"

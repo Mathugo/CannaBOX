@@ -10,11 +10,7 @@
 
 <HomeScreen>:
     name: "home"
-    canvas.before:
-        Rectangle:
-            pos: self.pos
-            size: self.size
-            source: '../img/background_logo.png'
+
     Label:
         text: "Nique ta mere"
         font_name: "Roboto"
@@ -30,19 +26,7 @@
         color: 1,0.8,0,1
         pos_hint: {'center_x': .5, 'center_y': .5}
 
-    FloatLayout: ## DASH
-        id: dash_layout
-        Button:
-            background_normal: ''
-            background_color: 0,0,0,0
-            pos_hint: {'center_x': .05, 'center_y': .9}
-            size_hint: 0.13, 0.2
-            on_release:
-                root.add_dash()
-            Image:
-                source: '../assets/ico/menu.png'
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
+    FloatLayout: 
 
         CircularProgressBar:
             id: cpT

@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.core.text import Label as CoreLabel
 from kivy.uix.label import Label
+from kivy.uix.image import Image
 from kivy.clock import Clock
 from functools import partial
 
@@ -29,6 +30,7 @@ class DashScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.anim_duration=1
+        
     def add_dash(self):
         self.dash_widget=DashBoard()
         self.add_widget(self.dash_widget)
@@ -89,6 +91,7 @@ class SettingsScreen(Screen):
 def load_screens_files():
     Builder.load_file('Screens/StartScreen.kv')
     Builder.load_file('Screens/DashBoard.kv')
+    Builder.load_file('Screens/DashBoardScreen.kv')
     Builder.load_file('Screens/HomeScreen.kv')
     Builder.load_file('Screens/GraphScreen.kv')
     Builder.load_file('Screens/ScheduleScreen.kv')
