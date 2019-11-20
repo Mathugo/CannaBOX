@@ -25,10 +25,9 @@ class StartScreen(Screen):
 
         Clock.schedule_once(self.anim, 2.1)
 
-
-class HomeScreen(Screen):
-    def __init__(self,**kwargs):
-        super(HomeScreen, self).__init__(**kwargs)
+class DashScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.anim_duration=1
     def add_dash(self):
         self.dash_widget=DashBoard()
@@ -40,7 +39,6 @@ class HomeScreen(Screen):
     def remove_dash_clock(self,dt):
         self.remove_widget(self.dash_widget)
         self.remove_widget(self.btn1)
-
     def add_button(self,dt):
         btn1 = Button(
                     background_color =(0, 0, 0, 0),
@@ -51,6 +49,11 @@ class HomeScreen(Screen):
         btn1.bind(on_press = self.remove_dash)
         self.btn1=btn1
         self.add_widget(btn1)
+
+class HomeScreen(DashScreen):
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+
 
 class DashBoard(FloatLayout):
     def __init__(self,**kwargs):
@@ -66,27 +69,26 @@ class DashBoard(FloatLayout):
         animation.start(self)
 
 class GraphScreen(Screen):
-    pass
-class GraphScreenDash(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 class ScheduleScreen(Screen):
-    pass
-class ScheduleScreenDash(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 class TimelapseScreen(Screen):
-    pass
-class TimelapseScreenDash(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 class SettingsScreen(Screen):
-    pass
-class SettingsScreenDash(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 
 
 def load_screens_files():
     Builder.load_file('Screens/StartScreen.kv')
+    Builder.load_file('Screens/DashBoard.kv')
     Builder.load_file('Screens/HomeScreen.kv')
     Builder.load_file('Screens/GraphScreen.kv')
     Builder.load_file('Screens/ScheduleScreen.kv')

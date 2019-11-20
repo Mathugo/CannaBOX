@@ -5,41 +5,6 @@
 #:set TempLabel Label(text="Temperature\n{}\u00B0C", font_size=25, color=(1,1,0.5,1), halign="center")
 #:set HygroLabel Label(text="Humidity\n{}%", font_size=25, color=(1,1,0.5,1), halign="center")
 
-<DashBoard>:
-    size_hint: None, None
-    Image:
-        source: '../assets/Home/menu_home.png'
-        size_hint: None, None
-        size: (300, 600)
-            #    size: self.parent.size # So we don't have to change it every time, change the size above only
-        pos_hint: {'center_x': -1.5, 'center_y': 3}
-    FloatLayout:
-        Button: # GRAPH
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .75}
-            on_release:app.sm.current = "graph"
-        Button: # Schedule
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .58}
-            on_release:app.sm.current = "schedule"
-
-        Button: # Timelapse
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .42}
-            on_release:app.sm.current = "timelapse"
-        Button: # Setting
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': .01, 'center_y': .25}
-            on_release:app.sm.current = "settings"
-
 
 
 
@@ -66,6 +31,7 @@
         pos_hint: {'center_x': .5, 'center_y': .5}
 
     FloatLayout: ## DASH
+        id: dash_layout
         Button:
             background_normal: ''
             background_color: 0,0,0,0
