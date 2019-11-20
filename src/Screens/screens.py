@@ -11,12 +11,44 @@ from functools import partial
 
 
 class StartScreen(Screen):
-    def anim(self, dt):
+    def __init__(self, **kwargs):
+        super(StartScreen,self).__init__(**kwargs)
+
+    def setSm(self, sm):
+        self.sm=sm
+    def anim1(self, dt):
         indication = Label(text="We need to do a few things first\nBefore starting your first session",font_name="QuickSand",font_size=50)
         self.add_widget(indication)
         a = Animation(opacity=0,duration=8)
         a.start(indication)
+        Clock.schedule_once(self.anim2,8)
+    def hello(self,none):
+        self.sm.current="home"
 
+    def anim2(self, dt):
+        wifi = Label(text="Do you want the webpage\nof your plant to be enable ?",font_name="QuickSand",font_size=50)
+        self.add_widget(wifi)
+        btnyes=Button(background_color =(1, 1, 1, 1),
+                      color =(1, 1, 1, 1),
+                      text="Yes",
+                      font_size=40,
+                      font_name="Cantarell",
+                      size =(300, 300),
+                      size_hint =(.13, .12),
+                      pos_hint = {'center_x':0.5, 'center_y':0.3})
+
+        btnskip=Button(background_color =(1, 1, 1, 1),
+                      color =(1, 1, 1, 1),
+                      text="Skip",
+                      font_size=40,
+                      font_name="Cantarell",
+                      size =(300, 300),
+                      size_hint =(.13, .12),
+                      pos_hint = {'center_x':0.9, 'center_y':0.1},
+                      on_release = self.hello)
+
+        self.add_widget(btnskip)
+        self.add_widget(btnyes)
     def __init__(self,**kwargs):
         super(StartScreen, self).__init__(**kwargs)
         home_title = Label(text="Welcome",font_name="QuickSand",font_size=70)
@@ -24,7 +56,7 @@ class StartScreen(Screen):
         a = Animation(opacity=0,duration=3)
         a.start(home_title)
 
-        Clock.schedule_once(self.anim, 2.1)
+        Clock.schedule_once(self.anim1, 3)
 
 class DashScreen(Screen):
     def __init__(self, **kwargs):
@@ -72,18 +104,23 @@ class HomeScreen(DashScreen):
 class GraphScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
+
 
 class ScheduleScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
 
 class TimelapseScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
 
 class SettingsScreen(DashScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
 
 
 

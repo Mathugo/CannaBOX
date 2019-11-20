@@ -51,8 +51,8 @@ class GrowBox(App):
         return sm
 
     def remove_dash(self):
-            screen = self.sm.current
-
+        screen = self.sm.current
+        try:
             if screen == "home":
                 self.home.remove_dash(0)
             elif screen == "graph":
@@ -63,17 +63,21 @@ class GrowBox(App):
                 self.timelapse.remove_dash(0)
             elif screen == "settings":
                 self.settings.remove_dash(0)
-
+        except:
+            pass
+            
     def loadScreens(self):
 
         global sm
-        #sm.add_widget(StartScreen(name='start'))
+        self.start= StartScreen(name='start')
+        self.start.setSm(sm)
         self.home=HomeScreen(name='home')
         self.graph=GraphScreen(name='graph')
         self.schedule=ScheduleScreen(name='schedule')
         self.timelapse=TimelapseScreen(name='timelapse')
         self.settings=SettingsScreen(name='settings')
 
+        sm.add_widget(self.start)
         sm.add_widget(self.home)
         sm.add_widget(self.graph)
         sm.add_widget(self.schedule)
