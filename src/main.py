@@ -50,13 +50,27 @@ class GrowBox(App):
         Clock.schedule_interval(self.animate_circle, 0.1)
         return sm
 
+    def remove_dash(self):
+            screen = self.sm.current
+
+            if screen == "home":
+                self.home.remove_dash(0)
+            elif screen == "graph":
+                self.graph.remove_dash(0)
+            elif screen == "schedule":
+                self.schedule.remove_dash(0)
+            elif screen == "timelapse":
+                self.timelapse.remove_dash(0)
+            elif screen == "settings":
+                self.settings.remove_dash(0)
+
     def loadScreens(self):
 
         global sm
         #sm.add_widget(StartScreen(name='start'))
         self.home=HomeScreen(name='home')
         self.graph=GraphScreen(name='graph')
-        self.schedule=ScheduleScreen(name='schedue')
+        self.schedule=ScheduleScreen(name='schedule')
         self.timelapse=TimelapseScreen(name='timelapse')
         self.settings=SettingsScreen(name='settings')
 

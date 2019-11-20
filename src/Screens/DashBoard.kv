@@ -7,41 +7,42 @@
             #    size: self.parent.size # So we don't have to change it every time, change the size above only
         pos_hint: {'center_x': -1.5, 'center_y': 3}
     FloatLayout:
-        Button: # GRAPH
+        Button:
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size : 32, 32
             pos : 0, 430
             on_release:
-                app.home.remove_dash(0)
+                app.remove_dash()
                 app.sm.current = "home"
-        Button: # Schedule
+
+        Button:
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size : 32,32
             pos: 0, 330
             on_release:
-                app.graph.remove_dash(0)
+                app.remove_dash()
                 app.sm.current = "graph"
-        Button: # Timelapse
+        Button:
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size : 32,32
             pos: 0,230
             on_release:
-                app.schedule.remove_dash(0)
+                app.remove_dash()
                 app.sm.current = "schedule"
-        Button: # Setting
+        Button: 
             background_normal: ''
             background_color: 1, 1, 1, 0
             size_hint: 3, 0.9
             size: 32,32
             pos: 0, 130
             on_release:
-                app.timelapse.remove_dash(0)
+                app.remove_dash()
                 app.sm.current = "timelapse"
         Button:
             background_normal: ''
@@ -50,5 +51,5 @@
             size: 32,32
             pos: 0, 30
             on_release:
-                app.settings.remove_dash(0)
+                app.remove_dash()
                 app.sm.current = "settings"
