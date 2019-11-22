@@ -65,12 +65,13 @@ class GrowBox(App):
                 self.settings.remove_dash(0)
         except:
             pass
-            
+
     def loadScreens(self):
 
         global sm
         self.start= StartScreen(name='start')
         self.start.setSm(sm)
+        self.configure=ConfigureScreen(name='configure')
         self.home=HomeScreen(name='home')
         self.graph=GraphScreen(name='graph')
         self.schedule=ScheduleScreen(name='schedule')
