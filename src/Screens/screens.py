@@ -100,11 +100,14 @@ class ConfigureScreen(Screen):
 
 class DashScreen(Screen):
     def __init__(self, **kwargs):
+        self.img_source=kwargs.pop('img',None)
         super().__init__(**kwargs)
         self.anim_duration=1
 
     def add_dash(self):
         self.dash_widget=DashBoard()
+        self.dash_widget.setImg(self.img_source)
+
         self.add_widget(self.dash_widget)
         Clock.schedule_once(self.add_button, self.anim_duration)
     def remove_dash(self,dt):
@@ -126,12 +129,16 @@ class DashScreen(Screen):
 
 class DashBoard(FloatLayout):
     def __init__(self,**kwargs):
-        super(DashBoard,self).__init__(**kwargs)
+        #self.img_source=kwargs.get('img_source',None)
+        super().__init__(**kwargs)
+        self.img = self.ids.img_dash
         self.anim_duration=1
         animation = Animation(x=0)
         animation = Animation(x=300, t='in_out_back',duration=self.anim_duration)
         animation.start(self)
 
+    def setImg(self, psource):
+        self.img.source=psource
     def remove(self):
         animation = Animation(x=300)
         animation = Animation(x=0, t='in_out_back',duration=self.anim_duration)
@@ -139,30 +146,32 @@ class DashBoard(FloatLayout):
 
 class HomeScreen(DashScreen):
     def __init__(self,**kwargs):
-        super().__init__(**kwargs)
+        self.img_source=kwargs.pop('img',None)
+        super().__init__(img=self.img_source)
 
 class GraphScreen(DashScreen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        self.img_source=kwargs.pop('img',None)
+        super().__init__(img=self.img_source)
         self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
 
 class ScheduleScreen(DashScreen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        self.img_source=kwargs.pop('img',None)
+        super().__init__(img=self.img_source)
         self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
 
 class TimelapseScreen(DashScreen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        self.img_source=kwargs.pop('img',None)
+        super().__init__(img=self.img_source)
         self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
 
 class SettingsScreen(DashScreen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        self.img_source =kwargs.pop('img',None)
+        super().__init__(img=self.img_source)
         self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
-
 
 def load_screens_files():
     Builder.load_file('Screens/StartScreen.kv')
