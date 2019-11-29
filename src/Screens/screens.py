@@ -12,7 +12,7 @@ from functools import partial
 
 class StartScreen(Screen):
     def __init__(self,**kwargs):
-        super(StartScreen, self).__init__(**kwargs)
+        super().__init__()
 
         Clock.schedule_interval(self.logo_anim,2)
         self.stop_image=1
@@ -54,7 +54,8 @@ class StartScreen(Screen):
 
     def want_to_configure(self, dt):
 
-        Clock.schedule_interval(self.anim_text,2)
+        webpage = Label(text="Do you want the webpage\nof your plant to be enable ?",font_name="QuickSand",font_size=50)
+        self.add_widget(webpage)
 
         btnyes=Button(background_color =(1, 1, 1, 1),
                       color =(1, 1, 1, 1),
@@ -77,12 +78,6 @@ class StartScreen(Screen):
                       on_release = self.Gohome)
         self.add_widget(btnskip)
         self.add_widget(btnyes)
-
-    def anim_text(self,dt):
-        wifi = Label(text="Do you want the webpage\nof your plant to be enable ?",font_name="QuickSand",font_size=50)
-        self.add_widget(wifi)
-        a = Animation(opacity=0.5,duration=2)
-        a.start(wifi)
 
     def Gohome(self,release):
         self.sm.current = "home"
@@ -148,6 +143,23 @@ class HomeScreen(DashScreen):
     def __init__(self,**kwargs):
         self.img_source=kwargs.pop('img',None)
         super().__init__(img=self.img_source)
+        Clock.schedule_interval(self.animate_circle, 0.1)
+
+    def animate_circle(self,dt):
+        circProgressBarT = self.ids.cpT
+        circProgressBarH = self.ids.cpH
+
+        if circProgressBarT.value<circProgressBarT.max:
+            circProgressBarT.value+=1
+        else:
+            circProgressBarT.value=circProgressBarT.min
+
+        if circProgressBarH.value<circProgressBarH.max:
+            circProgressBarH.value+=1
+        else:
+            circProgressBarH.value=circProgressBarH.min
+
+
 
 class GraphScreen(DashScreen):
     def __init__(self, **kwargs):
@@ -172,13 +184,3 @@ class SettingsScreen(DashScreen):
         self.img_source =kwargs.pop('img',None)
         super().__init__(img=self.img_source)
         self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
-def load_screens_files():
-    Builder.load_file('Screens/StartScreen.kv')
-    Builder.load_file('Screens/DashBoard.kv')
-    Builder.load_file('Screens/DashBoardScreen.kv')
-    Builder.load_file('Screens/HomeScreen.kv')
-    Builder.load_file('Screens/GraphScreen.kv')
-    Builder.load_file('Screens/ScheduleScreen.kv')
-    Builder.load_file('Screens/TimelapseScreen.kv')
-    Builder.load_file('Screens/SettingsScreen.kv')

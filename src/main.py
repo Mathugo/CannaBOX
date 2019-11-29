@@ -20,35 +20,18 @@ from fonts import loadFonts
 from circularProgressBar import CircularProgressBar
 from Screens.screens import *
 
-sm = ScreenManager(transition=FadeTransition())
-load_screens_files()
-
-# DECLARE SCREENS # 
-
+#load_screens_files()
 
 class GrowBox(App):
-
-    def animate_circle(self,dt):
-
-        circProgressBarT = self.root.get_screen('home').ids.cpT
-        circProgressBarH = self.root.get_screen('home').ids.cpH
-
-
-        if circProgressBarT.value<circProgressBarT.max:
-            circProgressBarT.value+=1
-        else:
-            circProgressBarT.value=circProgressBarT.min
-
-        if circProgressBarH.value<circProgressBarH.max:
-            circProgressBarH.value+=1
-        else:
-            circProgressBarH.value=circProgressBarH.min
+    def __init__(self, **kwargs):
+        super().__init__()
+        self.sm = ScreenManager(transition=FadeTransition())
+        self.loadKvScreens()
+        self.loadScreens()
 
     def build(self):
-        self.sm=sm
-        self.loadScreens()
-        Clock.schedule_interval(self.animate_circle, 0.1)
-        return sm
+        #self.sm=sm
+        return self.sm
 
     def remove_dash(self):
         screen = self.sm.current
@@ -68,9 +51,8 @@ class GrowBox(App):
 
     def loadScreens(self):
 
-        global sm
         self.start= StartScreen(name='start')
-        self.start.setSm(sm)
+        self.start.setSm(self.sm)
         self.configure=ConfigureScreen(name='configure')
         self.home=HomeScreen(name='home',img="../assets/Home/menu_home.png")
         self.graph=GraphScreen(name='graph',img="../assets/Graph/menu_graph.png")
@@ -78,16 +60,24 @@ class GrowBox(App):
         self.timelapse=TimelapseScreen(name='timelapse',img="../assets/Timelapse/menu_timelapse.png")
         self.settings=SettingsScreen(name='settings',img="../assets/Settings/menu_settings.png")
 
-        sm.add_widget(self.start)
-        sm.add_widget(self.configure)
-        sm.add_widget(self.home)
-        sm.add_widget(self.graph)
-        sm.add_widget(self.schedule)
-        sm.add_widget(self.timelapse)
-        sm.add_widget(self.settings)
+        self.sm.add_widget(self.start)
+        self.sm.add_widget(self.configure)
+        self.sm.add_widget(self.home)
+        self.sm.add_widget(self.graph)
+        self.sm.add_widget(self.schedule)
+        self.sm.add_widget(self.timelapse)
+        self.sm.add_widget(self.settings)
 
+    def loadKvScreens(self):
+        Builder.load_file('Screens/StartScreen.kv')
+        Builder.load_file('Screens/DashBoard.kv')
+        Builder.load_file('Screens/DashBoardScreen.kv')
+        Builder.load_file('Screens/HomeScreen.kv')
+        Builder.load_file('Screens/GraphScreen.kv')
+        Builder.load_file('Screens/ScheduleScreen.kv')
+        Builder.load_file('Screens/TimelapseScreen.kv')
+        Builder.load_file('Screens/SettingsScreen.kv')
 
 if __name__ == '__main__':
     loadFonts()
-
     GrowBox().run()
