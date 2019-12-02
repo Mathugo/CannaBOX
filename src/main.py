@@ -3,7 +3,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
-from kivy.graphics import Color, Ellipse, Rectangle
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.core.text import Label as CoreLabel
@@ -14,13 +13,23 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 
+### Import all screen file
+
+from Screens.DashBoard.DashBoard import *
+from Screens.Configure.Configure import *
+from Screens.Graph.Graph         import *
+from Screens.Home.Home           import *
+from Screens.Schedule.Schedule   import *
+from Screens.Settings.Settings   import *
+from Screens.Start.Start         import *
+from Screens.Timelapse.Timelapse import *
+
+
 #### Start UP
 Window.size = (1024, 600)
 from fonts import loadFonts
-from circularProgressBar import CircularProgressBar
-from Screens.screens import *
 
-#load_screens_files()
+
 
 class GrowBox(App):
     def __init__(self, **kwargs):
@@ -28,7 +37,6 @@ class GrowBox(App):
         self.sm = ScreenManager(transition=FadeTransition())
         self.loadKvScreens()
         self.loadScreens()
-
     def build(self):
         #self.sm=sm
         return self.sm
@@ -69,14 +77,15 @@ class GrowBox(App):
         self.sm.add_widget(self.settings)
 
     def loadKvScreens(self):
-        Builder.load_file('Screens/StartScreen.kv')
-        Builder.load_file('Screens/DashBoard.kv')
-        Builder.load_file('Screens/DashBoardScreen.kv')
-        Builder.load_file('Screens/HomeScreen.kv')
-        Builder.load_file('Screens/GraphScreen.kv')
-        Builder.load_file('Screens/ScheduleScreen.kv')
-        Builder.load_file('Screens/TimelapseScreen.kv')
-        Builder.load_file('Screens/SettingsScreen.kv')
+        Builder.load_file('Screens/Start/StartScreen.kv')
+        Builder.load_file('Screens/DashBoard/DashBoard.kv')
+        Builder.load_file('Screens/DashBoard/DashBoardScreen.kv')
+        Builder.load_file('Screens/Home/HomeScreen.kv')
+        Builder.load_file('Screens/Graph/GraphScreen.kv')
+        Builder.load_file('Screens/Schedule/ScheduleScreen.kv')
+        Builder.load_file('Screens/Timelapse/TimelapseScreen.kv')
+        Builder.load_file('Screens/Settings/SettingsScreen.kv')
+
 
 if __name__ == '__main__':
     loadFonts()

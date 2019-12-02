@@ -9,6 +9,7 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from functools import partial
 
+from Screens.DashBoard.DashBoard import *
 
 class StartScreen(Screen):
     def __init__(self,**kwargs):
@@ -87,100 +88,3 @@ class StartScreen(Screen):
 
     def setSm(self, sm):
         self.sm=sm
-
-class ConfigureScreen(Screen):
-
-    def Gohome(self):
-        self.sm.current="home"
-
-class DashScreen(Screen):
-    def __init__(self, **kwargs):
-        self.img_source=kwargs.pop('img',None)
-        super().__init__(**kwargs)
-        self.anim_duration=1
-
-    def add_dash(self):
-        self.dash_widget=DashBoard()
-        self.dash_widget.setImg(self.img_source)
-
-        self.add_widget(self.dash_widget)
-        Clock.schedule_once(self.add_button, self.anim_duration)
-    def remove_dash(self,dt):
-        self.dash_widget.remove()
-        Clock.schedule_once(self.remove_dash_clock,self.anim_duration)
-    def remove_dash_clock(self,dt):
-        self.remove_widget(self.dash_widget)
-        self.remove_widget(self.btn1)
-    def add_button(self,dt):
-        btn1 = Button(
-                    background_color =(0, 0, 0, 0),
-                    color =(1, 1, 1, 1),
-                    size =(32, 32),
-                    size_hint =(.08, .12),
-                    pos =(0, 530))
-        btn1.bind(on_press = self.remove_dash)
-        self.btn1=btn1
-        self.add_widget(btn1)
-
-class DashBoard(FloatLayout):
-    def __init__(self,**kwargs):
-        #self.img_source=kwargs.get('img_source',None)
-        super().__init__(**kwargs)
-        self.img = self.ids.img_dash
-        self.anim_duration=1
-        animation = Animation(x=0)
-        animation = Animation(x=300, t='in_out_back',duration=self.anim_duration)
-        animation.start(self)
-
-    def setImg(self, psource):
-        self.img.source=psource
-    def remove(self):
-        animation = Animation(x=300)
-        animation = Animation(x=0, t='in_out_back',duration=self.anim_duration)
-        animation.start(self)
-
-class HomeScreen(DashScreen):
-    def __init__(self,**kwargs):
-        self.img_source=kwargs.pop('img',None)
-        super().__init__(img=self.img_source)
-        Clock.schedule_interval(self.animate_circle, 0.1)
-
-    def animate_circle(self,dt):
-        circProgressBarT = self.ids.cpT
-        circProgressBarH = self.ids.cpH
-
-        if circProgressBarT.value<circProgressBarT.max:
-            circProgressBarT.value+=1
-        else:
-            circProgressBarT.value=circProgressBarT.min
-
-        if circProgressBarH.value<circProgressBarH.max:
-            circProgressBarH.value+=1
-        else:
-            circProgressBarH.value=circProgressBarH.min
-
-
-
-class GraphScreen(DashScreen):
-    def __init__(self, **kwargs):
-        self.img_source=kwargs.pop('img',None)
-        super().__init__(img=self.img_source)
-        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
-class ScheduleScreen(DashScreen):
-    def __init__(self, **kwargs):
-        self.img_source=kwargs.pop('img',None)
-        super().__init__(img=self.img_source)
-        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
-class TimelapseScreen(DashScreen):
-    def __init__(self, **kwargs):
-        self.img_source=kwargs.pop('img',None)
-        super().__init__(img=self.img_source)
-        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
-
-class SettingsScreen(DashScreen):
-    def __init__(self, **kwargs):
-        self.img_source =kwargs.pop('img',None)
-        super().__init__(img=self.img_source)
-        self.add_dash() # FIRST TIME TO DISPLAY WHEN CHANGING SCREEN
