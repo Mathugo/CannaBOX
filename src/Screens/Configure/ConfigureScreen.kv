@@ -1,2 +1,7 @@
 <ConfigureScreen>:
-    name= 'configure'
+    name: 'configure'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: '../img/background_logo.png'

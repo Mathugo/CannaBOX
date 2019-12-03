@@ -84,7 +84,7 @@ class StartScreen(Screen):
         self.sm.current = "home"
 
     def Goconfigure(self,release):
-        self.sm.current="configure"
+        self.sm.current = "configure"
 
     def setSm(self, sm):
         self.sm=sm

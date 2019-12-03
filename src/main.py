@@ -30,7 +30,6 @@ Window.size = (1024, 600)
 from fonts import loadFonts
 
 
-
 class GrowBox(App):
     def __init__(self, **kwargs):
         super().__init__()
@@ -80,6 +79,7 @@ class GrowBox(App):
         Builder.load_file('Screens/Start/StartScreen.kv')
         Builder.load_file('Screens/DashBoard/DashBoard.kv')
         Builder.load_file('Screens/DashBoard/DashBoardScreen.kv')
+        Builder.load_file('Screens/Configure/ConfigureScreen.kv')
         Builder.load_file('Screens/Home/HomeScreen.kv')
         Builder.load_file('Screens/Graph/GraphScreen.kv')
         Builder.load_file('Screens/Schedule/ScheduleScreen.kv')
