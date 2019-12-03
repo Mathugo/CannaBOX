@@ -18,7 +18,7 @@ class StartScreen(Screen):
         Clock.schedule_interval(self.logo_anim,2)
         self.stop_image=1
         self.start_btn = Button(
-                        size = (32,32),
+                        size = (1024,600),
                         size_hint = (1,1),
                         background_color = (0,0,0,0),
                         on_release = self.welcome)
@@ -35,13 +35,15 @@ class StartScreen(Screen):
             self.anim_image.start(self.start_image)
 
     def welcome(self,release):
-        #self.remove_widget(self.start_btn)
-        #self.remove_widget(self.start_image)
-        #Animation.cancel_all(self.start_image, 'opacity')
+
+        self.remove_widget(self.start_btn)
         self.stop_image=0
+    #    img = Image(source="../img/background.png",
+    #    size = (1024,600))
 
         home_title = Label(text="Welcome",font_name="QuickSand",font_size=70)
         self.add_widget(home_title)
+
         a = Animation(opacity=0,duration=3)
         a.start(home_title)
         Clock.schedule_once(self.few_things, 3)
@@ -85,6 +87,7 @@ class StartScreen(Screen):
 
     def Goconfigure(self,release):
         self.sm.current = "configure"
-
+        config = self.sm.get_screen("configure")
+        config.run()
     def setSm(self, sm):
         self.sm=sm
