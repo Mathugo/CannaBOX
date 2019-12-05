@@ -17,17 +17,17 @@ class HomeScreen(DashScreen):
     def __init__(self,**kwargs):
         self.img_source=kwargs.pop('img',None)
         super().__init__(img=self.img_source)
-        self.circProgressBarH = self.ids.cpH
-        self.circProgressBarT = self.ids.cpT
-        self.circProgressBarH.value=1
-        self.circProgressBarT.value=1
-        Clock.schedule_interval(self.animate_circle, 0.5)
+    #    self.circProgressBarH = self.ids.cpH
+    #    self.circProgressBarT = self.ids.cpT
+    #    self.circProgressBarH.value=1
+    #    self.circProgressBarT.value=1
+    #    Clock.schedule_interval(self.animate_circle, 0.5)
     def animate_circle(self,dt):
-
-        valueT = 25
-        valueH = 55
-        self.circProgressBarH.value = valueH
-        self.circProgressBarT.value = valueT
+        pass
+    #    valueT = 25
+    #    valueH = 55
+    #    self.circProgressBarH.value = valueH
+    #    self.circProgressBarT.value = valueT
     #    self.circProgressBarH.pos_hint = {'center_x': 0.5, 'center_y':0.5}
     #    self.circProgressBarH.pos_hint = {'center_x': 0.7, 'center_y':0.5}
 
