@@ -185,9 +185,12 @@ class CircularProgressBar(Widget):
         elif self._min_progress > value or value > self._max_progress:
             raise ValueError("Progress must be between minimum ({}) and maximum ({}), not {}!"
                              .format(self._min_progress, self._max_progress, value))
-        elif value != self._value:
-            self._value = value
+        else:
+            self._value= value
             self._draw()
+    #    elif value != self._value:
+    #        self._value = value
+    #        self._draw()
 
     @property
     def widget_size(self):
